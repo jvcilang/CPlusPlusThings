@@ -13,13 +13,16 @@ class Base {
   int x;
 
 public:
+  Base(int val = 0) : x(val) {}
   virtual void fun() = 0;
-  int getX() { return x; }
+  virtual ~Base() = default;
+  int getX() const { return x; }
 };
 
 class Derived : public Base {
 public:
-  void fun() { cout << "fun() called"; } // 实现了fun()函数
+  using Base::Base;
+  void fun() override { cout << "fun() called" << endl; } // 实现了fun()函数
 };
 
 int main(void) {
